@@ -1,7 +1,6 @@
 let net = require('net');
 let tcp = net.createServer();  // 创建 tcp server
 let fs = require('fs');
-let _ = require('lodash');
 
 // 监听 端口
 tcp.listen(3000,function (){
@@ -11,11 +10,12 @@ tcp.listen(3000,function (){
 // 处理客户端连接
 tcp.on('connection',function (socket){
     console.log('连接成功',socket.remotePort);
-
+    //链接成功后,直接发送index.html
+    //index.html 为http中所需要的所有报文
     let str = fs.readFileSync('./index.html') + '';
     let strArr = str.split('\n');
 
-    _.each(strArr,(str,i)=>{
+    strArr.forEach((str,i)=>{
         setTimeout(()=>{
             console.log(i,str)
             socket.write(str+'\n')
