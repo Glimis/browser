@@ -1,7 +1,6 @@
 let net = require('net');
 let tcp = net.createServer();  // 创建 tcp server
 let fs = require('fs');
-let _ = require('lodash');
 
 // 监听 端口
 tcp.listen(3000,function (){
@@ -29,7 +28,7 @@ tcp.on('connection',function (socket){
         let str = fs.readFileSync(path) + '';
         let strArr = str.split('\n');
     
-        _.each(strArr,(str,i)=>{
+        strArr.forEach((str,i)=>{
             setTimeout(()=>{
                 console.log(i,str)
                 socket.write(str+'\n')

@@ -98,10 +98,10 @@ https://github.com/Glimis/browser/tree/master/%E5%8A%A0%E8%BD%BD/01.%E5%8F%91%E9
 这里可观察到的现象非常明显
 - 开头几秒浏览器并没有刷新
 - 从某某一秒开始,浏览器1s变更一次,显示html中的内容
-![](1.gif)
+![](https://raw.githubusercontent.com/Glimis/browser/master/%E5%8A%A0%E8%BD%BD/01.%E5%8F%91%E9%80%81%E6%8A%A5%E6%96%87%E7%89%B9%E5%88%AB%E6%85%A2%E6%97%B6%2C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%9A%84/1.gif)
 - TTFB指数是2s
 - Download指数是10s
-![](2.png)
+![](https://raw.githubusercontent.com/Glimis/browser/master/%E5%8A%A0%E8%BD%BD/01.%E5%8F%91%E9%80%81%E6%8A%A5%E6%96%87%E7%89%B9%E5%88%AB%E6%85%A2%E6%97%B6%2C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%9A%84/2.png)
 
 ## 解释
 解释这几个现象并不复杂,首先是network的两个指标
@@ -141,16 +141,16 @@ https://developers.google.com/web/tools/chrome-devtools/network/understanding-re
 
 执行`http-server`(自行安装http-server)，打开`http://127.0.0.1:8080/index2.html`并在`wireshark`中输入过滤条件`tcp.port==8080`,就可以找到由tcp发送的多个报文
 
-![](3.png)
+![](https://raw.githubusercontent.com/Glimis/browser/master/%E5%8A%A0%E8%BD%BD/01.%E5%8F%91%E9%80%81%E6%8A%A5%E6%96%87%E7%89%B9%E5%88%AB%E6%85%A2%E6%97%B6%2C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%9A%84/3.png)
 这里不做详细探讨,总之相对于我们手动的强行发送,16K是一个包大小的范围
 
 当然,一个tcp级别的包肯定不会像http那样,会强制应用程序强制刷新
 
 ## 刷新大小 -- 64K
 本地打开index2.html，可以看到如下展示
-![](3.gif)
+![](https://raw.githubusercontent.com/Glimis/browser/master/%E5%8A%A0%E8%BD%BD/01.%E5%8F%91%E9%80%81%E6%8A%A5%E6%96%87%E7%89%B9%E5%88%AB%E6%85%A2%E6%97%B6%2C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%9A%84/3.gif)
 如同按需加载一样的渲染,打开performance，可看到渲染流程如下
-![](4.png)
+![](https://raw.githubusercontent.com/Glimis/browser/master/%E5%8A%A0%E8%BD%BD/01.%E5%8F%91%E9%80%81%E6%8A%A5%E6%96%87%E7%89%B9%E5%88%AB%E6%85%A2%E6%97%B6%2C%E6%B5%8F%E8%A7%88%E5%99%A8%E6%98%AF%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86%E7%9A%84/4.png)
 
 即渲染进程在渲染数据时,最多一次渲染64K数据
 ## 总结
