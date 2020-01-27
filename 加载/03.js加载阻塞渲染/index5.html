@@ -1,0 +1,14 @@
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+
+<html lang="en">
+<body>
+    <div>动态加载+setInterval</div>
+    <script>function a(){let link = document.createElement("link");link.rel="stylesheet";link.href="red.css";document.body.appendChild(link);};let b = setInterval(()=>{a();a();a()},1000)</script>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+    <div>5</div>
+    <div>6</div>
+</body>
+</html>

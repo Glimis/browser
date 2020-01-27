@@ -1,7 +1,6 @@
 let net = require('net');
 let tcp = net.createServer();  // 创建 tcp server
 let fs = require('fs');
-let _ = require('lodash');
 
 // 监听 端口
 tcp.listen(3000,function (){
@@ -24,18 +23,18 @@ tcp.on('connection',function (socket){
         data = data + "";
         let pathUrl = data.split('\n')[0].split(' ')[1];
         let path = pathMapping[pathUrl] ||  '.'+pathUrl;
-        
+        if(path.slice(4) == '.css'){
+            if(path != 'red.css' && path!='green'){
+                path = 'red.css';
+            }
+        }
+
        try {
         let str = fs.readFileSync(path) + '';
-        // if(path == './1.css'){
-        //     socket.write(str)
-        //     socket.destroy();
-        //     return
-        // }
 
         let strArr = str.split('\n');
         
-        _.each(strArr,(str,i)=>{
+        strArr.forEach((str,i)=>{
             setTimeout(()=>{
                 console.log(socket.remotePort,i,str)
                 socket.write(str+'\n')
