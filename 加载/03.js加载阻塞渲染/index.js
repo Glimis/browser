@@ -20,6 +20,7 @@ tcp.on('connection',function (socket){
         console.log('关闭',socket.remotePort);
     })
     socket.on('data', function (data) {
+        console.log('data',data+"")
         data = data + "";
         let pathUrl = data.split('\n')[0].split(' ')[1];
         let path = pathMapping[pathUrl] ||  '.'+pathUrl;

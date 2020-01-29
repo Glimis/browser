@@ -96,20 +96,19 @@ index5.html(加载red.css需要6秒,1s进行一次加载循环)
 ## 缓存规则
 静态html加载js相同的url,会直接不在请求 --》 index4.html
 
+对于加载期请求,并非加载单例,而是加载期单例 --》 index7.html
+
 而动态加载,无视缓存(但一次只有一个请求) --》 index5.html
 
 如果在加载期加载link已存在的css,加载会合并 --》 index6.html
 
-即动态加载一个由html已存在的css,动态加载并不会进行加载
 
-使用`http-server`查看`index7.html`(超大html),可看到加载会合并 --》 index7.html
-
-
-
+缓存规则与资源加载器(源码)有关,此处不做探讨
 
 了解了这些,应该也可以清楚
 
-为什么有时候会要求script放在表头,使用async与defer处理,而非直接放在body后
+为什么有时候会要求script放在表头,使用async与defer处理,而非直接放在body后(提前加载时间)
+
 
 ## 总结
 最后总结一下,js的阻塞与css阻塞一致,也是加载完后,统一进行解析
